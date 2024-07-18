@@ -15,7 +15,7 @@ export default function Webgl() {
 
   return (
     <div className='glContainer'>
-      <Canvas gl={{ alpha: true }}>
+      <Canvas dpr={[1, 1.5]} gl={{ alpha: true, toneMappingExposure: 1.0, toneMapping: ACESFilmicToneMapping }} shadows>
         <Suspense fallback={<HandleLoading load={setIsLoading} />}>
           {/* <Perf/> */}
           <Scene />
