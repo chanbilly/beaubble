@@ -1,4 +1,9 @@
 @import './core/typography';
 
-@import './core/base';
+@import './core/reset';
 @import './core/theme';
+@import './core/base';
+
+@import './components/loader';
+@import './components/gnb';
+@import './components/footer';
