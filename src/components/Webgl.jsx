@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react'
+import { Suspense, lazy, useEffect, useState, ACESFilmicToneMapping } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Loader from './UI/Loader'
 import Scene from './Webgl/Scene'

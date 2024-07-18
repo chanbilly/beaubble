@@ -1,7 +1,7 @@
 import { useProgress } from '@react-three/drei'
 import { useEffect, useState, useRef } from 'react'
 
-import useAppStore from '../../hooks/useAppStore'
+import useAppStore from '../../store/useAppStore'
 
 export default function Loader(props) {
   const { load } = props

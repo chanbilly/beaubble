@@ -5,7 +5,7 @@ import GNB from './components/UI/GNB'
 
 import './styles/index.scss'
 
-import useAppStore from './hooks/useAppStore'
+import useAppStore from './store/useAppStore'
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
 }
 
 function Layout() {
-
+  const globalState = useAppStore((state) => state.globalState)
 
   return (
     <div id={globalState} className='layout'>

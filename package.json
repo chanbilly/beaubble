@@ -17,9 +17,11 @@
     "framer-motion-3d": "^11.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.25.1",
+    "react-router-dom": "^6.22.3",
     "sass": "^1.77.8",
-    "three": "^0.137.0",
+    "swiper": "^11.1.5",
+    "three": "^0.163.0",
+    "three-stdlib": "^2.30.4",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
