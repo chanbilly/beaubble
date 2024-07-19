@@ -5,7 +5,7 @@ const useAppStore = create((set) => ({
     {
       name: "Elysian Fields",
       thumbnails: [
-        { src: "/img/thumbnail-1.jpg", label: "EF Psittaciformes"},
+        { src: "/img/thumbnail-1.jpg", label: "EF Psittaciformes", link: "/product" },
         { src: "/img/thumbnail-2.jpg", label: "EF Noksae" },
         { src: "/img/thumbnail-3.jpg", label: "EF Corvus corone" }
       ]
@@ -13,7 +13,7 @@ const useAppStore = create((set) => ({
     {
       name: "Lunar Bliss",
       thumbnails: [
-        { src: "/img/thumbnail-4.jpg", label: "LB Moon Cyclid" },
+        { src: "/img/thumbnail-4.jpg", label: "LB Moon Cyclid"},
         { src: "/img/thumbnail-5.jpg", label: "Abyss Blue" }
       ]
     },

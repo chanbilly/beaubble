@@ -6,11 +6,12 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      min-height: 156px;
+      height: 156px;
       border-bottom: 1px solid $color-black;
       padding: 0 32px; 
       cursor: pointer;
       overflow: hidden;
+      transition: height 0.3s cubic-bezier(0.45,0.05,0.55,0.95);
 
       span {
         font-size: 100px;
@@ -29,6 +30,7 @@
           height: 140px;
           flex: 0 0 140px;
           overflow: hidden;
+          transition: all 0.3s ease-out;
           
           img {
             width: 100%;
@@ -51,6 +53,34 @@
         span {
           font-weight: 700;
           transition: font-weight 0.3s cubic-bezier(0.45,0.05,0.55,0.95);
+        }
+      }
+
+      &.active {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &:nth-child(1), &:nth-child(2) {
+          height: 473px;
+          transition: height 0.3s cubic-bezier(0.45,0.05,0.55,0.95);
+        }
+        
+        span {
+          font-weight: 700;
+          transition: font-weight 0.3s cubic-bezier(0.45,0.05,0.55,0.95);
+          order: 2;
+        }
+
+        .thumbnails {
+          order: 1;
+          
+          & > li {
+            opacity: 1;
+            width: 240px;
+            height: 240px;
+            flex: 0 0 240px;
+            transition: all 0.3s ease-in;
+          }
         }
       }
     }

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { useInView, motion } from "framer-motion"
 
 import useAppStore from "../../store/useAppStore"
+import { min } from "three/examples/jsm/nodes/Nodes.js"
 
 export default function WineList() {
   const wineData = useAppStore((state) => state.wineData)
@@ -9,7 +10,7 @@ export default function WineList() {
   const isInView = useInView(wineList)
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredItem, setHoveredItem] = useState(null)
-  const [clickedItem, setClickedItem] = useState(null)
+  const [activeItem, setActiveItem] = useState(null)
 
   useEffect(() => {
     if (isInView) {
@@ -27,8 +28,8 @@ export default function WineList() {
     setHoveredItem(null)
   }
 
-  const handleWineItemClick = (e) => {
-
+  const handleClick = (index) => {
+    setActiveItem(index === activeItem ? null : index)
   }
 
   return (
@@ -38,9 +39,11 @@ export default function WineList() {
           <motion.li
             key={index}
             variants={items}
-            onClick={(e) => handleWineItemClick(e)}
+            className={activeItem === index ? "active" : ""}
+            animate={activeItem === index ? "active" : hoveredItem === index ? "hover" : "initial"}
             onHoverStart={() => handleHoverStart(index)}
             onHoverEnd={handleHoverEnd}
+            onClick={() => handleClick(index)}
           >
             <span>{wine.name}</span>
             <ul className="thumbnails">
@@ -49,10 +52,10 @@ export default function WineList() {
                   key={thumbIndex}
                   variants={thumbnailVariants}
                   initial="hidden"
-                  animate={hoveredItem === index ? "visible" : "hidden"}
+                  animate={activeItem === index ? "active" : hoveredItem === index ? "visible" : "hidden"}
                   custom={thumbIndex}
                 >
-                  <a href="/product" data-label={thumbnail.label}>
+                  <a href={thumbnail.link ? thumbnail.link : "javascript:void(0)"}>
                     <img src={thumbnail.src} alt={thumbnail.label} />
                     <span>{thumbnail.label}</span>
                   </a>
@@ -87,8 +90,9 @@ const list = {
 }
 
 const items = {
-  visible: { opacity: 1, y: 0 },
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 20, height: 'auto' },
+  visible: { opacity: 1, y: 0, height: 156 },
+  active: { opacity: 1, y: 0, height: 480 }
 }
 
 const thumbnailVariants = {
@@ -105,4 +109,8 @@ const thumbnailVariants = {
     opacity: 0,
     y: 140,
   },
+  active: {
+    opacity: [0,1],
+    y: 0,
+  }
 }
