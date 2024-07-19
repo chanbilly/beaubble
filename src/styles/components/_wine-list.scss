@@ -1,0 +1,13 @@
+.wine-list {
+  &_ctn {
+    width: 100%;
+    li {
+      width: 100%;
+      min-height: 156px;
+      font-size: 100px;
+      font-weight: 100;
+      line-height: 140px;
+      border-bottom: 1px solid $color-black;
+    }
+  }
+}
