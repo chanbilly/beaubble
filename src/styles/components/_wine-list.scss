@@ -8,6 +8,13 @@
       font-weight: 100;
       line-height: 140px;
       border-bottom: 1px solid $color-black;
+      transition: font-weight 0.3s cubic-bezier(0.45,0.05,0.55,0.95);
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 700;
+        transition: font-weight 0.3s cubic-bezier(0.45,0.05,0.55,0.95);
+      }
     }
   }
 }

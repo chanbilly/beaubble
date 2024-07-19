@@ -36,9 +36,9 @@ const list = {
     y: 0,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
       ease: [0.46,0.03,0.52,0.96],
-      duration: 0.6,
+      duration: 0.5,
     },
   },
   hidden: {
