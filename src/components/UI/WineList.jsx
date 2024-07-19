@@ -1,32 +1,24 @@
-import React, {useEffect, useState} from "react"
-import { useAnimate } from "framer-motion"
+import React, {useEffect, useState, useRef} from "react"
+import { useInView, motion } from "framer-motion"
 import useAppStore from "../../store/useAppStore"
 
 
 export default function WineList() {
-  const [wineList, animate] = useAnimate()
   const wines = useAppStore((state) => state.wines)
+  const wineList = useRef(null)
+  const isInView = useInView(wineList)
 
   useEffect(() => {
-    animate('li', {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: 0.5,
-        stagger: 0.1
-      }
-    })
-  }
-  , [wines])
+    console.log("Element is in view: ", isInView)
+  }, [isInView])
 
   return (
-    <div ref={wineList}>
-      <ul>
+    <div className="wine-list_ctn mt-6" >
+      <ul ref={wineList}>
         {wines.map((wine, index) => (
-          <li key={index}>
+          <motion.li key={index}>
             {wine}
-          </li>
+          </motion.li>
         ))}
       </ul>
     </div>

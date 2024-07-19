@@ -28,7 +28,6 @@ function Layout() {
   return (
     <div className='layout'>
       <GNB />
-      <Webgl />
       <Outlet />
       <Footer/>
     </div>

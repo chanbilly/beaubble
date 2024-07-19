@@ -3,17 +3,18 @@
   top: 0;
   left: 0;
   width: 100vw;
+  z-index: -1;
   height: 100vh;
   color: #000;
-  z-index: 9999;
   background-color: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(60px);
   backdrop-filter: blur(60px);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
-
+  
   &.visible {
+    z-index: 9999;
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s linear;
