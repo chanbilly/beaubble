@@ -1,16 +1,13 @@
 import { useEffect, useRef } from 'react'
-import { Environment, ScrollControls, Scroll, useScroll, PerspectiveCamera } from '@react-three/drei'
+import { Environment, ScrollControls, Scroll, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 
 import useAppStore from '../../store/useAppStore'
-import Bottles from './Bottles'
 import Intro from '../UI/Intro'
 import Wines from './Wines'
 
 export default function Scene() {
   const { globalState } = useAppStore()
-  const scroll = useScroll()
-  const { width, height } = useThree((state) => state.viewport)
 
   return (
     <>

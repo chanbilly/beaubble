@@ -1,36 +1,37 @@
 import React, { useRef, useEffect } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, useScroll } from '@react-three/drei'
 import { LoopOnce } from 'three'
 
 import m__wine from '/model/wines-transformed.glb?url'
+import { useFrame, useThree } from '@react-three/fiber'
 
 export default function Wines(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF(m__wine)
   const { actions, mixer } = useAnimations(animations, group)
+  const scroll = useScroll()
+  const { width, height } = useThree().viewport 
 
+  
   useEffect(() => {
-    actions['Bottle1Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle2Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle3Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle4Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle5Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle6Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle7Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle8Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle9Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle10Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle11Action'].setLoop(LoopOnce).clampWhenFinished = true
-    actions['Bottle12Action'].setLoop(LoopOnce).clampWhenFinished = true
+    Object.values(actions).forEach(action => {
+      action.setLoop(LoopOnce)
+      action.clampWhenFinished = true
+    })
 
     mixer.addEventListener('finished', onAnimFinished)
     return () => mixer.removeEventListener('finished', onAnimFinished)
-  }, [])
-
+  }, [actions, mixer])
+  
   const onAnimFinished = (e) => {
     console.log('Animation finished', e)
   }
-
+  
+  useFrame(() => {
+    const scrollOffset = scroll.offset * height
+    group.current.position.y = -scrollOffset
+  })
+  
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
