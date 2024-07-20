@@ -26,97 +26,31 @@ export default function Wines(props) {
   const onAnimFinished = (e) => {
     console.log('Animation finished', e)
   }
-
-  const playAnimations = () => {
-    actions['Bottle1Action'].timeScale = 1
-    actions['Bottle2Action'].timeScale = 1
-    actions['Bottle3Action'].timeScale = 1
-    actions['Bottle4Action'].timeScale = 1
-    actions['Bottle5Action'].timeScale = 1
-    actions['Bottle6Action'].timeScale = 1
-    actions['Bottle7Action'].timeScale = 1
-    actions['Bottle8Action'].timeScale = 1
-    actions['Bottle9Action'].timeScale = 1
-    actions['Bottle10Action'].timeScale = 1
-    actions['Bottle11Action'].timeScale = 1
-    actions['Bottle12Action'].timeScale = 1
-    actions['Bottle1Action'].paused = false
-    actions['Bottle2Action'].paused = false
-    actions['Bottle3Action'].paused = false
-    actions['Bottle4Action'].paused = false
-    actions['Bottle5Action'].paused = false
-    actions['Bottle6Action'].paused = false
-    actions['Bottle7Action'].paused = false
-    actions['Bottle8Action'].paused = false
-    actions['Bottle9Action'].paused = false
-    actions['Bottle10Action'].paused = false
-    actions['Bottle11Action'].paused = false
-    actions['Bottle12Action'].paused = false
-    actions['Bottle1Action'].play()
-    actions['Bottle2Action'].play()
-    actions['Bottle3Action'].play()
-    actions['Bottle4Action'].play()
-    actions['Bottle5Action'].play()
-    actions['Bottle6Action'].play()
-    actions['Bottle7Action'].play()
-    actions['Bottle8Action'].play()
-    actions['Bottle9Action'].play()
-    actions['Bottle10Action'].play()
-    actions['Bottle11Action'].play()
-    actions['Bottle12Action'].play()
-  }
-
-  const playReverse = () => {
-    actions['Bottle1Action'].timeScale = -1
-    actions['Bottle2Action'].timeScale = -1
-    actions['Bottle3Action'].timeScale = -1
-    actions['Bottle4Action'].timeScale = -1
-    actions['Bottle5Action'].timeScale = -1
-    actions['Bottle6Action'].timeScale = -1
-    actions['Bottle7Action'].timeScale = -1
-    actions['Bottle8Action'].timeScale = -1
-    actions['Bottle9Action'].timeScale = -1
-    actions['Bottle10Action'].timeScale = -1
-    actions['Bottle11Action'].timeScale = -1
-    actions['Bottle12Action'].timeScale = -1
-    actions['Bottle1Action'].paused = false
-    actions['Bottle2Action'].paused = false
-    actions['Bottle3Action'].paused = false
-    actions['Bottle4Action'].paused = false
-    actions['Bottle5Action'].paused = false
-    actions['Bottle6Action'].paused = false
-    actions['Bottle7Action'].paused = false
-    actions['Bottle8Action'].paused = false
-    actions['Bottle9Action'].paused = false
-    actions['Bottle10Action'].paused = false
-    actions['Bottle11Action'].paused = false
-    actions['Bottle12Action'].paused = false
-    actions['Bottle1Action'].play()
-    actions['Bottle2Action'].play()
-    actions['Bottle3Action'].play()
-    actions['Bottle4Action'].play()
-    actions['Bottle5Action'].play()
-    actions['Bottle6Action'].play()
-    actions['Bottle7Action'].play()
-    actions['Bottle8Action'].play()
-    actions['Bottle9Action'].play()
-    actions['Bottle10Action'].play()
-    actions['Bottle11Action'].play()
-    actions['Bottle12Action'].play()
-
-  }
-
   
   useFrame((state, delta) => {
     const scrollOffset = scroll.offset * height 
     group.current.position.y = -scrollOffset
-    console.log(scroll.offset)
 
-    if (scroll.offset > 0.7) {
-      playAnimations()
-    } else {
+    const scrollProgress = scroll.offset
+
+    Object.keys(actions).forEach(actionName => {
+      const action = actions[actionName]
+      const actionDuration = action.getClip().duration
+
+      const newTime = scrollProgress * actionDuration
+
+      action.time = newTime
+
+
+      if (!action.isRunning()) {
+        action.play()
+      }
+    })
+
+    if (scrollOffset < 70) {
       state.camera.position.z = Math.max(20, Math.min(100, 100 - scrollOffset))
-      playReverse()
+    } else {
+      state.camera.position.z = 20
     }
     
   })
