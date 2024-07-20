@@ -5,7 +5,7 @@ import Webgl from "../components/Webgl"
 export default function Main() {
 	return (
 		<main id="main">
-			<Intro/>
+			{/* <Intro/> */}
 			<Webgl/>
 			<WineList/>
 		</main>
