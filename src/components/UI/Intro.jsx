@@ -1,11 +1,19 @@
 import React, { useRef, useEffect } from "react"
+import { useMotionValue, motion, useTransform } from "framer-motion"
+import { useScroll } from "@react-three/drei"
+import { useFrame } from "@react-three/fiber"
 
 export default function Intro() {
   const countdown = useRef(null)
+  const scroll = useScroll()
   const countDownDate = new Date("Sep 1, 2024 00:00:00").getTime()
 
+  // connect motion value to the scroll and fade out the intro based on the scroll value
+  const x = useMotionValue(0)
+  const opacity = useTransform(x, [0, 0.5], [1, 0])
+
   useEffect(() => {
-    const x = setInterval(() => {
+    const interval = setInterval(() => {
       const now = new Date().getTime()
       const finaldate = countDownDate - now
       const days = Math.floor(finaldate / (1000 * 60 * 60 * 24))
@@ -19,21 +27,25 @@ export default function Intro() {
         <span>${seconds}</span>
       `
       if (finaldate < 0) {
-        clearInterval(x)
-        countdown.current.innerHTML = "OO:OO:OO:OO"
+        clearInterval(interval)
+        countdown.current.innerHTML = "00:00:00:00"
       }
-    }
-    , 1000)
+    }, 1000)
 
-    return () => clearInterval(x)
-  }, [])
+    return () => clearInterval(interval)
+  }, [countDownDate])
+
+
+  useFrame(() => {
+    x.set(scroll.offset)
+  })
 
   return (
-    <div className="intro">
+    <motion.div className="intro" style={{ opacity }}>
       <div className="intro_content">
         <img src="/img/winery.svg" alt="" />
         <div ref={countdown} className="countdown"></div>
       </div>
-    </div>
+    </motion.div>
   )
 }
