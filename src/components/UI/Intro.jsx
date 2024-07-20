@@ -8,7 +8,6 @@ export default function Intro() {
   const scroll = useScroll()
   const countDownDate = new Date("Sep 1, 2024 00:00:00").getTime()
 
-  // connect motion value to the scroll and fade out the intro based on the scroll value
   const x = useMotionValue(0)
   const opacity = useTransform(x, [0, 0.5], [1, 0])
 

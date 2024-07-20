@@ -8,10 +8,10 @@ import Wines from './Wines'
 
 export default function Scene() {
   const { globalState } = useAppStore()
-
+  
   return (
     <>
-      <ScrollControls pages={3} damping={0.1}>
+      <ScrollControls pages={2} damping={0.1}>
         <Scroll>
           <Wines />
         </Scroll>
