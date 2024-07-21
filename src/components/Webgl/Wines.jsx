@@ -6,51 +6,43 @@ import m__wine from '/model/wines-transformed.glb?url'
 import { useFrame} from '@react-three/fiber'
 
 export default function Wines(props) {
-
   const group = useRef()
   const { nodes, materials, animations } = useGLTF(m__wine)
-  const { actions, mixer } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group)
   const size = props.scale.xy.min() * 0.001
+  const prevProgressRef = useRef(props.scrollState.progress)
 
-  
   useEffect(() => {
     Object.values(actions).forEach(action => {
       action.setLoop(LoopOnce)
       action.clampWhenFinished = true
     })
-
-    mixer.addEventListener('finished', onAnimFinished)
-    return () => mixer.removeEventListener('finished', onAnimFinished)
   }, [actions, mixer])
-  
-  const onAnimFinished = (e) => {
-    console.log('Animation finished', e)
-  }
-  
+
   useFrame((state, delta) => {
     const progress = props.scrollState.progress
-    console.log(progress)
-    Object.keys(actions).forEach(actionName => {
-      const action = actions[actionName]
-      const actionDuration = action.getClip().duration
 
-      const newTime = progress * actionDuration
+    if (prevProgressRef.current !== progress) {
+      Object.keys(actions).forEach(actionName => {
+        const action = actions[actionName]
+        const actionDuration = action.getClip().duration
+        const newTime = progress * actionDuration
+        action.time = newTime
 
-      action.time = newTime
+        if (!action.isRunning()) {
+          action.play()
+        }
+      })
 
-      if (!action.isRunning()) {
-        action.play()
+      if (progress < 0.5) {
+        state.camera.position.z = 500 - (progress / 0.5) * 480
+      } else {
+        state.camera.position.z = 20
       }
-    })
 
-    if (progress < 0.5) {
-      state.camera.position.z = 500 - (progress / 0.5) * 450
-    } else {
-      state.camera.position.z = 50
+      prevProgressRef.current = progress
     }
-    
   })
-  
   return (
     <group ref={group} {...props} dispose={null}  rotation={[Math.PI / 2, 0, 0]} scale={size}>
       <group name="Scene">
