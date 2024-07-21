@@ -11,6 +11,7 @@ export default function Wines(props) {
   const { actions, mixer } = useAnimations(animations, group)
   const size = props.scale.xy.min() * 0.001
   const prevProgressRef = useRef(props.scrollState.progress)
+  const rotationRef = useRef([0, 0, 0])
 
   useEffect(() => {
     Object.values(actions).forEach(action => {
@@ -47,6 +48,12 @@ export default function Wines(props) {
       }
 
       prevProgressRef.current = progress
+    }
+
+    if (progress >= 0.7) {
+      const rotationSpeed = 0.001
+      rotationRef.current[1] -= rotationSpeed
+      group.current.rotation.y = rotationRef.current[1]
     }
   })
   

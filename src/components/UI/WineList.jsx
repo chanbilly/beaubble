@@ -57,8 +57,10 @@ export default function WineList() {
                   custom={thumbIndex}
                 >
                   <a href={thumbnail.link ? thumbnail.link : "javascript:void(0)"}>
-                    <img src={thumbnail.src} alt={thumbnail.label} />
-                    <span>{thumbnail.label}</span>
+                    <div className="img-wrapper">
+                      <img src={thumbnail.src} alt={thumbnail.label} />
+                    </div>
+                    <p>{thumbnail.label}</p>
                   </a>
                 </motion.li>
               ))}
