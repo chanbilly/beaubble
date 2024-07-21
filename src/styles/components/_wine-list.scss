@@ -1,6 +1,8 @@
 .wine-list {
   &_ctn {
     width: 100%;
+    background-color: $color-white;
+    
     & > li {
       display: flex;
       align-items: center;

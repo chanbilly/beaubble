@@ -1,0 +1,50 @@
+#main {
+  background-color: $color-red;
+  #scene {
+    position: relative;
+
+    .StickyContainer {
+      position: relative;
+      height: 500vh;
+    }
+  }
+}
+
+
+// .Placeholder {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: space-between;
+//   width: 100%;
+//   aspect-ratio: 16/9;
+// }
+
+// .Debug {
+//   outline: 1px dashed rgba(255, 255, 255, 0.33);
+// }
+// .Debug:after {
+//   content: 'StickyScrollScene';
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   background: rgba(255, 255, 255, 0.33);
+//   color: black;
+//   font-size: 10px;
+//   padding: 5px;
+// }
+
+// .ViewportScrollScene:after {
+//   content: 'ViewportScrollScene';
+// }
+
+.SomeDomContent {
+  position: sticky;
+  top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  padding: 2rem;
+}

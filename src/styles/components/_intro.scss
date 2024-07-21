@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-red;
+  position: absolute;
+  top: 0;
   
   &_content {
     .countdown {

@@ -1,26 +1,26 @@
 import { useEffect, useRef } from 'react'
-import { Environment, ScrollControls, Scroll, useScroll } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
+import { UseCanvas, ScrollScene } from '@14islands/r3f-scroll-rig'
+import { StickyScrollScene } from '@14islands/r3f-scroll-rig/powerups'
+
 
 import useAppStore from '../../store/useAppStore'
-import Intro from '../UI/Intro'
 import Wines from './Wines'
 
 export default function Scene() {
   const { globalState } = useAppStore()
+  const el = useRef()
+
   
   return (
     <>
-      <ScrollControls pages={2} damping={0.1}>
-        <Scroll>
-          <Wines />
-        </Scroll>
-        <Scroll html>
-          <Intro />
-        </Scroll>
-      </ScrollControls>
-      <Environment preset='warehouse' />
-      {/* <color attach='background' args={['#ffffff']} /> */}
+      <div className="StickyContainer">
+        <div ref={el} className="SomeDomContent Debug">
+          {/* <p>This element is position:sticky and will be tracked.</p> */}
+        </div>
+      </div>
+      <UseCanvas>
+        <StickyScrollScene track={el}>{(props) => <Wines {...props}/>}</StickyScrollScene>
+      </UseCanvas>
     </>
   )
 }

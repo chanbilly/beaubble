@@ -1,16 +1,16 @@
 import React, { useRef, useEffect } from 'react'
-import { useGLTF, useAnimations, useScroll } from '@react-three/drei'
+import { useGLTF, useAnimations } from '@react-three/drei'
 import { LoopOnce } from 'three'
 
 import m__wine from '/model/wines-transformed.glb?url'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame} from '@react-three/fiber'
 
 export default function Wines(props) {
+
   const group = useRef()
   const { nodes, materials, animations } = useGLTF(m__wine)
   const { actions, mixer } = useAnimations(animations, group)
-  const scroll = useScroll()
-  const { width, height } = useThree().viewport 
+  const size = props.scale.xy.min() * 0.001
 
   
   useEffect(() => {
@@ -28,35 +28,31 @@ export default function Wines(props) {
   }
   
   useFrame((state, delta) => {
-    const scrollOffset = scroll.offset * height 
-    group.current.position.y = -scrollOffset
-
-    const scrollProgress = scroll.offset
-
+    const progress = props.scrollState.progress
+    console.log(progress)
     Object.keys(actions).forEach(actionName => {
       const action = actions[actionName]
       const actionDuration = action.getClip().duration
 
-      const newTime = scrollProgress * actionDuration
+      const newTime = progress * actionDuration
 
       action.time = newTime
-
 
       if (!action.isRunning()) {
         action.play()
       }
     })
 
-    if (scrollOffset < 70) {
-      state.camera.position.z = Math.max(20, Math.min(100, 100 - scrollOffset))
+    if (progress < 0.5) {
+      state.camera.position.z = 500 - (progress / 0.5) * 450
     } else {
-      state.camera.position.z = 20
+      state.camera.position.z = 50
     }
     
   })
   
   return (
-    <group ref={group} {...props} dispose={null} rotation={[Math.PI / 2, 0, 0]}>
+    <group ref={group} {...props} dispose={null}  rotation={[Math.PI / 2, 0, 0]} scale={size}>
       <group name="Scene">
         <group name="Bottle1" position={[0, 0, -8.078]}>
           <mesh
