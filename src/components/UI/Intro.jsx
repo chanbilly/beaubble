@@ -1,15 +1,12 @@
 import React, { useRef, useEffect } from "react"
-import { useMotionValue, motion, useTransform } from "framer-motion"
-import { useScroll } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 export default function Intro() {
   const countdown = useRef(null)
-  const scroll = useScroll()
   const countDownDate = new Date("Sep 1, 2024 00:00:00").getTime()
 
-  const x = useMotionValue(0)
-  const opacity = useTransform(x, [0, 0.5], [1, 0])
+  const { scrollY } = useScroll()
+  const opacity = useTransform(scrollY, [0, 200], [1, 0])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,17 +31,12 @@ export default function Intro() {
     return () => clearInterval(interval)
   }, [countDownDate])
 
-
-  useFrame(() => {
-    x.set(scroll.offset)
-  })
-
   return (
-    <motion.div className="intro" style={{ opacity }}>
-      <div className="intro_content">
+    <div className="intro">
+      <motion.div className="intro_content" style={{ opacity }}>
         <img src="/img/winery.svg" alt="" />
         <div ref={countdown} className="countdown"></div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }

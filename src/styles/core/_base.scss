@@ -13,13 +13,13 @@ main {
   height: 100vh;
   background-color: $color-red;
 
-  * {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overflow-y: scroll;
+  // * {
+  //   -ms-overflow-style: none;
+  //   scrollbar-width: none;
+  //   overflow-y: scroll;
   
-    &:-webkit-scrollbar {
-      display: none; 
-    }
-  }
+  //   &:-webkit-scrollbar {
+  //     display: none; 
+  //   }
+  // }
 }
