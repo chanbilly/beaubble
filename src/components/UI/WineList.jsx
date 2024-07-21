@@ -33,7 +33,7 @@ export default function WineList() {
   }
 
   return (
-    <div className="wine-list mt-6">
+    <div className="wine-list mt-6" id="wineList">
       <motion.ul className="wine-list_ctn" ref={wineList} variants={list} initial="hidden" animate={isVisible ? "visible" : "hidden"}>
         {wineData.map((wine, index) => (
           <motion.li

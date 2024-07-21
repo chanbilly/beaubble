@@ -11,11 +11,12 @@ import Scene from '../components/Webgl/Scene'
 
 export default function Main() {
 	const [isLoading, setIsLoading] = useState(true)
+	const eventSource = useRef()
 
 	return (
-		<main id="main">
+		<main id="main" ref={eventSource}>
 			<GlobalCanvas
-        // eventSource={eventSource}
+        eventSource={eventSource}
         // eventPrefix="client"
         // scaleMultiplier={0.01}
         gl={{ alpha: true, toneMappingExposure: 1.0, toneMapping: ACESFilmicToneMapping }}

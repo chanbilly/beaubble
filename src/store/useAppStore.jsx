@@ -29,6 +29,8 @@ const useAppStore = create((set) => ({
   globalState: 'loading', // loading
   setGlobalState: (_state) => set(() => ({ globalState: _state })),
 
+  hoveredItem: null,
+  setHoveredItem: (_index) => set(() => ({ hoveredItem: _index })),
 
 }))
 

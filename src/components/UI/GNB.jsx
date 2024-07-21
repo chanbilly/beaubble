@@ -28,18 +28,14 @@ export default function GNB() {
     <div id='gnb' data-header-style={location.pathname == '/' ? "light" : "dark"}>
       <nav>
         <ul>
-          <li><a href="#">Shop</a></li>
+          <li><a href="/">Shop</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </nav>
       <div className='logo'>
-        <button
-          onClick={() => {
-            window.location.reload()
-          }}
-        >
+        <a href="/">
           <img src='/img/logo.svg' alt='' />
-        </button>
+        </a>
       </div>
       <div className="utils">
         <button onClick={handleLogin}>

@@ -6,39 +6,48 @@
     .StickyContainer {
       position: relative;
       height: 500vh;
+
+      .content {
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        
+        &.visible {
+          opacity: 1;
+          transition: opacity 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        h1 {
+          font-size: 80px;
+          font-weight: 100;
+          line-height: 120%;
+          margin-top: 40px;
+          text-align: center;
+          color: $color-white;
+
+          strong {
+            font-weight: 700;
+          }
+        }
+
+        a {
+          display: block;
+          font-size: 20px;
+          font-weight: 200;
+          line-height: 100px;
+          color: $color-white;
+          text-decoration: underline;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
     }
   }
 }
 
-
-// .Placeholder {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   width: 100%;
-//   aspect-ratio: 16/9;
-// }
-
-// .Debug {
-//   outline: 1px dashed rgba(255, 255, 255, 0.33);
-// }
-// .Debug:after {
-//   content: 'StickyScrollScene';
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   background: rgba(255, 255, 255, 0.33);
-//   color: black;
-//   font-size: 10px;
-//   padding: 5px;
-// }
-
-// .ViewportScrollScene:after {
-//   content: 'ViewportScrollScene';
-// }
-
-.SomeDomContent {
+.StickyContainerSection {
   width: 100%;
   position: sticky;
   top: 10vh;

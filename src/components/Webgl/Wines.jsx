@@ -1,17 +1,29 @@
 import React, { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { LoopOnce } from 'three'
-
-import m__wine from '/model/wines-transformed.glb?url'
 import { useFrame} from '@react-three/fiber'
 
+import m__wine from '/model/wines-transformed.glb?url'
+
+import useAppStore from '../../store/useAppStore'
+
 export default function Wines(props) {
+  const setHoveredItem = useAppStore(state => state.setHoveredItem)
   const group = useRef()
   const { nodes, materials, animations } = useGLTF(m__wine)
   const { actions, mixer } = useAnimations(animations, group)
   const size = props.scale.xy.min() * 0.001
   const prevProgressRef = useRef(props.scrollState.progress)
   const rotationRef = useRef([0, 0, 0])
+
+  const handlePointerOver = (bottleName) => {
+    // console.log(bottleName)
+    setHoveredItem(bottleName)
+  }
+
+  const handlePointerOut = () => {
+    // setHoveredItem(null)
+  }
 
   useEffect(() => {
     Object.values(actions).forEach(action => {
@@ -60,7 +72,12 @@ export default function Wines(props) {
   return (
     <group ref={group} {...props} dispose={null}  rotation={[Math.PI / 2, 0, 0]} scale={size}>
       <group name="Scene">
-        <group name="Bottle1" position={[0, 0, -8.078]}>
+        <group 
+          name="Bottle1" 
+          position={[0, 0, -8.078]}               
+          onPointerOver={() => handlePointerOver('Elysian Fields')}
+          onPointerOut={handlePointerOut}
+          >
           <mesh
             name="Vert004"
             castShadow
@@ -83,7 +100,10 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle2" position={[7.315, 0, -3.953]}>
+        <group name="Bottle2" position={[7.315, 0, -3.953]}
+          onPointerOver={() => handlePointerOver('Lunar Bliss')}
+          onPointerOut={handlePointerOut}
+        >
           <mesh
             name="Vert004"
             castShadow
@@ -106,7 +126,10 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle3" position={[4.227, 0, -6.99]}>
+        <group name="Bottle3" position={[4.227, 0, -6.99]}
+          onPointerOver={() => handlePointerOver('Celestial Reserve')}
+          onPointerOut={handlePointerOut}
+        >
           <mesh
             name="Vert004"
             castShadow
@@ -129,7 +152,10 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle4" position={[8.479, 0, 0.224]}>
+        <group name="Bottle4" position={[8.479, 0, 0.224]}
+          onPointerOver={() => handlePointerOver('Golden Harvest')}
+          onPointerOut={handlePointerOut}
+        >
           <mesh
             name="Vert004"
             castShadow
@@ -152,7 +178,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle5" position={[7.239, 0, 4.4]}>
+        <group name="Bottle5" position={[7.239, 0, 4.4]}
+          onPointerOver={() => handlePointerOver('Eclipse Noir')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -175,7 +203,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle6" position={[4.201, 0, 7.437]}>
+        <group name="Bottle6" position={[4.201, 0, 7.437]}
+          onPointerOver={() => handlePointerOver('Ruby Crest')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -198,7 +228,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle7" position={[0.025, 0, 8.551]}>
+        <group name="Bottle7" position={[0.025, 0, 8.551]}
+          onPointerOver={() => handlePointerOver('Crimson Nectar')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -221,7 +253,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle8" position={[-4.1, 0, 7.412]}>
+        <group name="Bottle8" position={[-4.1, 0, 7.412]}
+          onPointerOver={() => handlePointerOver('Burgundy Grape')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -244,7 +278,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle9" position={[-7.163, 0, 4.374]} rotation={[-Math.PI, 0, -Math.PI]}>
+        <group name="Bottle9" position={[-7.163, 0, 4.374]} rotation={[-Math.PI, 0, -Math.PI]}
+          onPointerOver={() => handlePointerOver('Moonlight Mist')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -267,7 +303,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle10" position={[-8.251, 0, 0.224]}>
+        <group name="Bottle10" position={[-8.251, 0, 0.224]}
+          onPointerOver={() => handlePointerOver('Eternal Flame')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -290,7 +328,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle11" position={[-7.188, 0, -3.953]}>
+        <group name="Bottle11" position={[-7.188, 0, -3.953]}
+          onPointerOver={() => handlePointerOver('Vintage Rose')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
@@ -313,7 +353,9 @@ export default function Wines(props) {
             material={materials['Material.001']}
           />
         </group>
-        <group name="Bottle12" position={[-4.126, 0, -6.99]} rotation={[-Math.PI, 0, -Math.PI]}>
+        <group name="Bottle12" position={[-4.126, 0, -6.99]} rotation={[-Math.PI, 0, -Math.PI]}
+          onPointerOver={() => handlePointerOver('Midnight Sun')}
+          onPointerOut={handlePointerOut}>
           <mesh
             name="Vert004"
             castShadow
