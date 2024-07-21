@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import { useInView, motion } from "framer-motion"
+import { useInView, motion, delay } from "framer-motion"
 
 import useAppStore from "../../store/useAppStore"
 import { min } from "three/examples/jsm/nodes/Nodes.js"
@@ -40,7 +40,8 @@ export default function WineList() {
             key={index}
             variants={items}
             className={activeItem === index ? "active" : ""}
-            animate={activeItem === index ? "active" : hoveredItem === index ? "hover" : "initial"}
+            initial="hidden"
+            animate={activeItem === index  ? "active" : isVisible ? "visible" : "hidden"}
             onHoverStart={() => handleHoverStart(index)}
             onHoverEnd={handleHoverEnd}
             onClick={() => handleClick(index)}
@@ -75,14 +76,15 @@ const list = {
     y: 0,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.1,
+      staggerChildren: 0.2,
+      // delayChildren: 0.2,
       ease: [0.46, 0.03, 0.52, 0.96],
       duration: 0.5,
     },
   },
   hidden: {
     opacity: 0,
-    y: 20,
+    y: 50,
     transition: {
       when: "afterChildren",
     },
@@ -91,7 +93,15 @@ const list = {
 
 const items = {
   hidden: { opacity: 0, y: 20, height: 'auto' },
-  visible: { opacity: 1, y: 0, height: 156 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    height: 156,
+    transition: {
+      duration: 0.5,
+      ease: [0.46, 0.03, 0.52, 0.96],
+    }
+  },
   active: { opacity: 1, y: 0, height: 480 }
 }
 
