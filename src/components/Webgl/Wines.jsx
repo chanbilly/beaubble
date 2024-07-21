@@ -17,7 +17,7 @@ export default function Wines(props) {
       action.setLoop(LoopOnce)
       action.clampWhenFinished = true
     })
-  }, [actions, mixer])
+  }, [actions])
 
   useFrame((state, delta) => {
     const progress = props.scrollState.progress
