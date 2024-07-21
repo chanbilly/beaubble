@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import React, { useRef, useEffect, useState } from 'react'
+import { useGLTF, useAnimations, useCursor } from '@react-three/drei'
 import { LoopOnce } from 'three'
 import { useFrame} from '@react-three/fiber'
 
@@ -15,14 +15,18 @@ export default function Wines(props) {
   const size = props.scale.xy.min() * 0.001
   const prevProgressRef = useRef(props.scrollState.progress)
   const rotationRef = useRef([0, 0, 0])
+  const [hovered, setHovered] = useState(false)
+  useCursor(hovered, 'pointer', 'auto', document.body)
 
   const handlePointerOver = (bottleName) => {
     // console.log(bottleName)
     setHoveredItem(bottleName)
+    setHovered(true)
   }
 
   const handlePointerOut = () => {
     // setHoveredItem(null)
+    setHovered(false)
   }
 
   useEffect(() => {
@@ -66,6 +70,8 @@ export default function Wines(props) {
       const rotationSpeed = 0.001
       rotationRef.current[1] -= rotationSpeed
       group.current.rotation.y = rotationRef.current[1]
+    } else {
+      setHoveredItem(null)
     }
   })
   

@@ -1,6 +1,6 @@
 import { GlobalCanvas, SmoothScrollbar } from '@14islands/r3f-scroll-rig'
 import { Environment } from '@react-three/drei' 
-import { Suspense, lazy, useEffect, useState, useRef, ACESFilmicToneMapping } from 'react'
+import { useState, useRef, ACESFilmicToneMapping } from 'react'
 
 import Intro from "../components/UI/Intro"
 import WineList from "../components/UI/WineList"
