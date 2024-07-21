@@ -35,7 +35,7 @@ export default function Intro() {
     <div className="intro">
       <motion.div className="intro_content" style={{ opacity }}>
         <img src="/img/winery.svg" alt="" />
-        <div ref={countdown} className="countdown"></div>
+        <div ref={countdown} className="countdown">OO:OO:OO:OO</div>
       </motion.div>
     </div>
   )

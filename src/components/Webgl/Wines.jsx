@@ -52,8 +52,6 @@ export default function Wines(props) {
         if (!action.isRunning()) {
           action.play()
         }
-
-        // Pause the action immediately after updating the time
         action.paused = true
       })
 
