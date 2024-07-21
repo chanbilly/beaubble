@@ -8,7 +8,7 @@ import { useFrame} from '@react-three/fiber'
 export default function Wines(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF(m__wine)
-  const { actions } = useAnimations(animations, group)
+  const { actions, mixer } = useAnimations(animations, group)
   const size = props.scale.xy.min() * 0.001
   const prevProgressRef = useRef(props.scrollState.progress)
 
@@ -16,8 +16,9 @@ export default function Wines(props) {
     Object.values(actions).forEach(action => {
       action.setLoop(LoopOnce)
       action.clampWhenFinished = true
+      action.paused = true
     })
-  }, [actions])
+  }, [actions, mixer])
 
   useFrame((state, delta) => {
     const progress = props.scrollState.progress
@@ -26,12 +27,17 @@ export default function Wines(props) {
       Object.keys(actions).forEach(actionName => {
         const action = actions[actionName]
         const actionDuration = action.getClip().duration
+
         const newTime = progress * actionDuration
+
         action.time = newTime
 
         if (!action.isRunning()) {
           action.play()
         }
+
+        // Pause the action immediately after updating the time
+        action.paused = true
       })
 
       if (progress < 0.5) {
@@ -43,6 +49,7 @@ export default function Wines(props) {
       prevProgressRef.current = progress
     }
   })
+  
   return (
     <group ref={group} {...props} dispose={null}  rotation={[Math.PI / 2, 0, 0]} scale={size}>
       <group name="Scene">
