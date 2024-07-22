@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { useGLTF, useAnimations, useCursor } from '@react-three/drei'
 import { LoopOnce } from 'three'
 import { useFrame} from '@react-three/fiber'
+import { motion } from 'framer-motion-3d'
 
 import m__wine from '/model/wines-transformed.glb?url'
 
@@ -72,316 +73,366 @@ export default function Wines(props) {
       setHoveredItem(null)
     }
   })
-  
+
   return (
-    <group ref={group} {...props} dispose={null}  rotation={[Math.PI / 2, 0, 0]} scale={size}>
-      <group name="Scene">
-        <group 
-          name="Bottle1" 
-          position={[0, 0, -8.078]}               
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={size}
+    >
+      <group name='Scene'>
+        <motion.group
+          name='Bottle1'
+          whileHover={{ scale: 1.2 }}
+          position={[0, 0, -8.078]}
           onPointerOver={() => handlePointerOver('Elysian Fields')}
           onPointerOut={handlePointerOut}
-          >
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle2" position={[7.315, 0, -3.953]}
+        </motion.group>
+        <motion.group
+          name='Bottle2'
+          position={[7.315, 0, -3.953]}
+          whileHover={{ scale: 1.2 }}
           onPointerOver={() => handlePointerOver('Lunar Bliss')}
           onPointerOut={handlePointerOut}
         >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle3" position={[4.227, 0, -6.99]}
+        </motion.group>
+        <motion.group
+          name='Bottle3'
+          position={[4.227, 0, -6.99]}
+          whileHover={{ scale: 1.1 }}
           onPointerOver={() => handlePointerOver('Celestial Reserve')}
           onPointerOut={handlePointerOut}
         >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle4" position={[8.479, 0, 0.224]}
+        </motion.group>
+        <motion.group
+          name='Bottle4'
+          whileHover={{ scale: 1.2 }}
+          position={[8.479, 0, 0.224]}
           onPointerOver={() => handlePointerOver('Golden Harvest')}
           onPointerOut={handlePointerOut}
         >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle5" position={[7.239, 0, 4.4]}
+        </motion.group>
+        <motion.group
+          name='Bottle5'
+          whileHover={{ scale: 1.2 }}
+          position={[7.239, 0, 4.4]}
           onPointerOver={() => handlePointerOver('Eclipse Noir')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle6" position={[4.201, 0, 7.437]}
+        </motion.group>
+        <motion.group
+          name='Bottle6'
+          whileHover={{ scale: 1.2 }}
+          position={[4.201, 0, 7.437]}
           onPointerOver={() => handlePointerOver('Ruby Crest')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle7" position={[0.025, 0, 8.551]}
+        </motion.group>
+        <motion.group
+          name='Bottle7'
+          whileHover={{ scale: 1.2 }}
+          position={[0.025, 0, 8.551]}
           onPointerOver={() => handlePointerOver('Crimson Nectar')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle8" position={[-4.1, 0, 7.412]}
+        </motion.group>
+        <motion.group
+          name='Bottle8'
+          whileHover={{ scale: 1.2 }}
+          position={[-4.1, 0, 7.412]}
           onPointerOver={() => handlePointerOver('Burgundy Grape')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle9" position={[-7.163, 0, 4.374]} rotation={[-Math.PI, 0, -Math.PI]}
+        </motion.group>
+        <motion.group
+          name='Bottle9'
+          whileHover={{ scale: 1.2 }}
+          position={[-7.163, 0, 4.374]}
+          rotation={[-Math.PI, 0, -Math.PI]}
           onPointerOver={() => handlePointerOver('Moonlight Mist')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle10" position={[-8.251, 0, 0.224]}
+        </motion.group>
+        <motion.group
+          name='Bottle10'
+          whileHover={{ scale: 1.2 }}
+          position={[-8.251, 0, 0.224]}
           onPointerOver={() => handlePointerOver('Eternal Flame')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle11" position={[-7.188, 0, -3.953]}
+        </motion.group>
+        <motion.group
+          name='Bottle11'
+          whileHover={{ scale: 1.2 }}
+          position={[-7.188, 0, -3.953]}
           onPointerOver={() => handlePointerOver('Vintage Rose')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
-        <group name="Bottle12" position={[-4.126, 0, -6.99]} rotation={[-Math.PI, 0, -Math.PI]}
+        </motion.group>
+        <motion.group
+          name='Bottle12'
+          whileHover={{ scale: 1.2 }}
+          position={[-4.126, 0, -6.99]}
+          rotation={[-Math.PI, 0, -Math.PI]}
           onPointerOver={() => handlePointerOver('Midnight Sun')}
-          onPointerOut={handlePointerOut}>
+          onPointerOut={handlePointerOut}
+        >
           <mesh
-            name="Vert004"
+            name='Vert004'
             castShadow
             receiveShadow
             geometry={nodes.Vert004.geometry}
             material={materials['Material.003']}
           />
           <mesh
-            name="Vert004_1"
+            name='Vert004_1'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_1.geometry}
             material={materials['Material.002']}
           />
           <mesh
-            name="Vert004_2"
+            name='Vert004_2'
             castShadow
             receiveShadow
             geometry={nodes.Vert004_2.geometry}
             material={materials['Material.001']}
           />
-        </group>
+        </motion.group>
       </group>
     </group>
   )
